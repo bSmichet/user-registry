@@ -6,13 +6,13 @@ This application is a user registry. It's used to register new users and view re
 
 ### Register a new user
 
-#### Web Service URL (POST Method)
+#### Web Service URL (POST Method) :
 
 ```
 http://localhost:8080/api/users
 ```
 
-#### Request sample:
+#### Request sample :
 
 ```
 POST http://localhost:8080/api/users
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 ```
 
-#### Response sample:
+#### Response sample :
 
 ```
 {
@@ -48,19 +48,19 @@ Content-Type: application/json
 
 ### Show details a registered user
 
-#### Web Service URL (GET Method)
+#### Web Service URL (GET Method) :
 
 ```
 http://localhost:8080/api/users/{{id}}
 ```
 
-#### Request sample:
+#### Request sample :
 
 ```
 GET http://localhost:8080/api/users/66700c1bdd9d8c412653ba2a
 ```
 
-#### Response sample:
+#### Response sample :
 
 ```
 {
