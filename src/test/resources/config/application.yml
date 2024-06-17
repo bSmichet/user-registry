@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: user-registry
+  mvc:
+    problemdetails:
+      enabled: true
+  data:
+    mongodb:
+      database: userRegistry
+server:
+  error:
+    include-message: always
