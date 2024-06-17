@@ -86,6 +86,25 @@ In the project root, configuration files for tools like git and maven files pom.
 
 - `/src/main/docker` - Docker configurations for the application and services that the application depends on
 
+## Prerequisites
+
+You need to start a MongoDB Database before running the Spring Boot Application User Registry.
+
+### Using Docker to start the MongoDB Database
+
+To start a mongodb database in a docker container, run:
+
+```
+docker compose -f src/main/docker/mongodb.yml up -d
+```
+
+To stop it and remove the container, run:
+
+```
+docker compose -f src/main/docker/mongodb.yml down
+```
+
+
 ## Development
 
 To start your application in the dev, run:
@@ -103,20 +122,6 @@ To launch your application's unit tests and integration tests, run:
 
 ```
 ./mvnw verify
-```
-
-## Using Docker to start MongoDB Database
-
-To start a mongodb database in a docker container, run:
-
-```
-docker compose -f src/main/docker/mongodb.yml up -d
-```
-
-To stop it and remove the container, run:
-
-```
-docker compose -f src/main/docker/mongodb.yml down
 ```
 
 ## UML Diagrams
