@@ -76,6 +76,19 @@ GET http://localhost:8080/api/users/66700c1bdd9d8c412653ba2a
 }
 ```
 
+## Project Architecture
+
+### Model View Controller Architecture
+
+The application is following a three-tier services architecture, the Model-View-Controller (MVC) pattern plays a pivotal role in organizing and separating concerns.
+
+The architecture is structured into three main layers:
+
+- Presentation (View and Controller)
+- Business Logic (Service)
+- Data Access (Repository)
+
+The used database to store the registered users is MongoDB.
 
 ## Project Structure
 
