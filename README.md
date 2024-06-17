@@ -116,13 +116,17 @@ To start your application in the dev, run:
 
 ## Testing
 
-### Spring Boot tests
+### Spring Boot unit tests and Integration tests
 
 To launch your application's unit tests and integration tests, run:
 
 ```
 ./mvnw verify
 ```
+
+### POSTMAN tests
+
+You can import POSTMAN tests by using the file [UserRegistryAPI.postman_collection.json](UserRegistryAPI.postman_collection.json)
 
 ## UML Diagrams
 
