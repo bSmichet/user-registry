@@ -124,9 +124,9 @@ To launch your application's unit tests and integration tests, run:
 ./mvnw verify
 ```
 
-### POSTMAN tests
+### Postman tests
 
-You can import POSTMAN tests by using the file [UserRegistryAPI.postman_collection.json](UserRegistryAPI.postman_collection.json)
+You can import Postman tests by using the file [UserRegistryAPI.postman_collection.json](UserRegistryAPI.postman_collection.json) in Postman application.
 
 ## UML Diagrams
 
