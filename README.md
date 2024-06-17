@@ -1,6 +1,6 @@
 # User Registry
 
-This application is a user registry. It's used to register new users and view registered users details.
+This application is a user registry. It can be used to register new users and show registered users details.
 
 ## REST API Services :
 
@@ -19,12 +19,12 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "firstName" : "TOTO",
-  "lastName" : "BOBO",
+  "firstName" : "Toto",
+  "lastName" : "Lebobo",
   "birthday" : "1985-02-22T12:59:00Z",
-  "address" : "1 avenue du General de Gaulle",
+  "address" : "1 avenue De Gaulle",
   "postalCode": "06600",
-  "country" : "france",
+  "country" : "FRANCE",
   "email" : "aaaaa@gmail.fr",
   "phoneNumber" : "0659808596"
 }
@@ -35,12 +35,12 @@ Content-Type: application/json
 ```
 {
   "id": "66700c1bdd9d8c412653ba2a",
-  "firstName" : "TOTO",
-  "lastName" : "BOBO",
+  "firstName" : "Toto",
+  "lastName" : "Lebobo",
   "birthday" : "1985-02-22T12:59:00Z",
-  "address" : "1 avenue du General de Gaulle",
+  "address" : "1 avenue De Gaulle",
   "postalCode": "06600",
-  "country" : "france",
+  "country" : "FRANCE",
   "email" : "aaaaa@gmail.fr",
   "phoneNumber" : "0659808596"
 }
@@ -65,17 +65,16 @@ GET http://localhost:8080/api/users/66700c1bdd9d8c412653ba2a
 ```
 {
   "id": "66700c1bdd9d8c412653ba2a",
-  "firstName" : "TOTO",
-  "lastName" : "BOBO",
+  "firstName" : "Toto",
+  "lastName" : "Lebobo",
   "birthday" : "1985-02-22T12:59:00Z",
-  "address" : "1 avenue du General de Gaulle",
+  "address" : "1 avenue De Gaulle",
   "postalCode": "06600",
-  "country" : "france",
+  "country" : "FRANCE",
   "email" : "aaaaa@gmail.fr",
   "phoneNumber" : "0659808596"
 }
 ```
-
 
 
 ## Project Structure
