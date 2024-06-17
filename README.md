@@ -4,7 +4,7 @@ This application is a user registry. It's used to register new users and view re
 
 ## REST API Services :
 
-### Register a new user
+### 1. Register a new user
 
 #### Web Service URL (POST Method) :
 
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 ```
 
-### Show details a registered user
+### 2. Show details a registered user
 
 #### Web Service URL (GET Method) :
 
