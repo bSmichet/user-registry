@@ -2,6 +2,82 @@
 
 This application is a user registry. It's used to register new users and view registered users details.
 
+## REST API Services :
+
+### Register a new user
+
+#### Web Service URL (POST Method)
+
+```
+http://localhost:8080/api/users
+```
+
+#### Request sample:
+
+```
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "firstName" : "TOTO",
+  "lastName" : "BOBO",
+  "birthday" : "1985-02-22T12:59:00Z",
+  "address" : "1 avenue du General de Gaulle",
+  "postalCode": "06600",
+  "country" : "france",
+  "email" : "aaaaa@gmail.fr",
+  "phoneNumber" : "0659808596"
+}
+```
+
+#### Response sample:
+
+```
+{
+  "id": "66700c1bdd9d8c412653ba2a",
+  "firstName" : "TOTO",
+  "lastName" : "BOBO",
+  "birthday" : "1985-02-22T12:59:00Z",
+  "address" : "1 avenue du General de Gaulle",
+  "postalCode": "06600",
+  "country" : "france",
+  "email" : "aaaaa@gmail.fr",
+  "phoneNumber" : "0659808596"
+}
+```
+
+### Show details a registered user
+
+#### Web Service URL (GET Method)
+
+```
+http://localhost:8080/api/users/{{id}}
+```
+
+#### Request sample:
+
+```
+GET http://localhost:8080/api/users/66700c1bdd9d8c412653ba2a
+```
+
+#### Response sample:
+
+```
+{
+  "id": "66700c1bdd9d8c412653ba2a",
+  "firstName" : "TOTO",
+  "lastName" : "BOBO",
+  "birthday" : "1985-02-22T12:59:00Z",
+  "address" : "1 avenue du General de Gaulle",
+  "postalCode": "06600",
+  "country" : "france",
+  "email" : "aaaaa@gmail.fr",
+  "phoneNumber" : "0659808596"
+}
+```
+
+
+
 ## Project Structure
 
 In the project root, JHipster generates configuration files for tools like git and maven files pom.xml mvnw and mvnw.cmd.
