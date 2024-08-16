@@ -24,7 +24,8 @@ import java.util.Optional;
 @Slf4j
 public class UserResource {
 
-//    private final Logger log = LoggerFactory.getLogger(UserResource.class);
+    private final Logger registerKpiLogger = LoggerFactory.getLogger("KPI-REGISTER");
+    private final Logger getKpiLogger = LoggerFactory.getLogger("KPI-GET");
 
     private final UserService userService;
 
@@ -41,16 +42,15 @@ public class UserResource {
      */
     @PostMapping("")
     public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO userDTO) throws URISyntaxException {
-//        log.debug("REST request to save User : {}", userDTO);
+        log.debug("REST request to save User : {}", userDTO);
         if (userDTO.getId() != null) {
             throw new UserValidationException("A new user cannot already have an ID");
         }
 
-        log.info("Example  info  message -> Received firstname {}", userDTO.getFirstName());
-        log.debug("Example debug message -> Received firstname {}", userDTO.getFirstName());
-        log.error("Example error message -> not found firstname {}", userDTO.getFirstName());
-
         userDTO = userService.save(userDTO);
+
+        registerKpiLogger.info("Example  info  message -> Received firstname {}", userDTO.getFirstName());
+
         return ResponseEntity
                 .created(new URI("/api/users/" + userDTO.getId()))
                 .body(userDTO);
@@ -64,8 +64,10 @@ public class UserResource {
      */
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getRegisteredUser(@PathVariable("id") String id) {
-        log.debug("REST request to get User : {}", id);
+        getKpiLogger.debug("REST request to get User : {}", id);
         Optional<UserDTO> userDTO = userService.findOne(id);
+
+        getKpiLogger.info("REST request to get User : {}", id);
         return userDTO
                 .map(response -> ResponseEntity.ok().body(response))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

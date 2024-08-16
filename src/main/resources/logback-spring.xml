@@ -3,9 +3,21 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg traceId=%X{traceId} spanId=%X{spanId}%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg traceId=%X{traceId:-} spanId=%X{spanId:-}%n</pattern>
         </encoder>
     </appender>
+
+<!--    <appender name="REGISTER-STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg kpi=REGISTER%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <appender name="GET-STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg kpi=GET%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <!-- Logstash Appender for sending logs to Logstash-->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
@@ -13,6 +25,73 @@
         <destination>localhost:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
+
+    <!-- Logstash Appender for sending kpi to Logstash-->
+    <appender name="KPI-LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- Logstash host and port -->
+        <destination>localhost:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdcKeyName>kpi</includeMdcKeyName>
+        </encoder>
+    </appender>
+
+<!--    <appender name="KPI-GET-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--            <providers>-->
+<!--                <pattern>-->
+<!--                    <pattern>-->
+<!--                        {-->
+<!--                        "timestamp": "@timestamp",-->
+<!--                        "severity": "%level",-->
+<!--                        "service": "${springAppName:-}",-->
+<!--                        "trace": "%X{traceId:-}",-->
+<!--                        "span": "%X{spanId:-}",-->
+<!--                        "pid": "${PID:-}",-->
+<!--                        "thread": "%thread",-->
+<!--                        "class": "%logger{40}",-->
+<!--                        "kpi" : "GET",-->
+<!--                        "rest": "%message"-->
+<!--                        }-->
+<!--                    </pattern>-->
+<!--                </pattern>-->
+<!--            </providers>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <appender name="KPI-REGISTER-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--            <providers>-->
+<!--                <pattern>-->
+<!--                    <pattern>-->
+<!--                        {-->
+<!--                        "timestamp": "@timestamp",-->
+<!--                        "severity": "%level",-->
+<!--                        "service": "${springAppName:-}",-->
+<!--                        "trace": "%X{traceId:-}",-->
+<!--                        "span": "%X{spanId:-}",-->
+<!--                        "pid": "${PID:-}",-->
+<!--                        "thread": "%thread",-->
+<!--                        "class": "%logger{40}",-->
+<!--                        "kpi": "REGISTER",-->
+<!--                        "rest": "%message"-->
+<!--                        }-->
+<!--                    </pattern>-->
+<!--                </pattern>-->
+<!--            </providers>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <logger name="KPI-REGISTER" level="info" additivity="false">
+<!--        <appender-ref ref="KPI-REGISTER-CONSOLE" />-->
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="KPI-LOGSTASH" />
+    </logger>
+
+    <logger name="KPI-GET" level="info" additivity="false">
+<!--        <appender-ref ref="KPI-GET-CONSOLE" />-->
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="KPI-LOGSTASH" />
+    </logger>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
