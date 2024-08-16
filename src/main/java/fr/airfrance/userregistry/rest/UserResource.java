@@ -4,6 +4,7 @@ import fr.airfrance.userregistry.exception.UserValidationException;
 import fr.airfrance.userregistry.service.UserService;
 import fr.airfrance.userregistry.service.dto.UserDTO;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,10 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api/users")
+@Slf4j
 public class UserResource {
 
-    private final Logger log = LoggerFactory.getLogger(UserResource.class);
+//    private final Logger log = LoggerFactory.getLogger(UserResource.class);
 
     private final UserService userService;
 
@@ -39,10 +41,15 @@ public class UserResource {
      */
     @PostMapping("")
     public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody UserDTO userDTO) throws URISyntaxException {
-        log.debug("REST request to save User : {}", userDTO);
+//        log.debug("REST request to save User : {}", userDTO);
         if (userDTO.getId() != null) {
             throw new UserValidationException("A new user cannot already have an ID");
         }
+
+        log.info("Example  info  message -> Received firstname {}", userDTO.getFirstName());
+        log.debug("Example debug message -> Received firstname {}", userDTO.getFirstName());
+        log.error("Example error message -> not found firstname {}", userDTO.getFirstName());
+
         userDTO = userService.save(userDTO);
         return ResponseEntity
                 .created(new URI("/api/users/" + userDTO.getId()))
